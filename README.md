@@ -1,2 +1,3 @@
 # extensions
-主要更改 newtab 显示
+
+自定义展示 chrome://newtab
