@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BookmarkTreeNode } from '../../hooks/useBookmarksTree'
+import type { BookmarkTreeNode } from '@stores/bookmarks'
 
 const bookmarksTree = defineModel<BookmarkTreeNode[]>()
 

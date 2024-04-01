@@ -1,9 +1,12 @@
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
 export interface BookmarkTreeNode extends Omit<chrome.bookmarks.BookmarkTreeNode, 'children'> {
   faviconUrl?: string
   children?: BookmarkTreeNode[] | undefined
 }
 
-export function useFaviconUrl(u: string, size = 32) {
+function getFaviconUrl(u: string, size = 32) {
   const url = new URL(chrome.runtime.getURL('/_favicon/'))
   url.searchParams.set('pageUrl', u) // this encodes the URL as well
   url.searchParams.set('size', `${size}`)
@@ -14,7 +17,7 @@ export function useFaviconUrl(u: string, size = 32) {
 function processBookmarkTreeNodes(bookmarkTreeNodes: BookmarkTreeNode[], size = 32) {
   for (const node of bookmarkTreeNodes) {
     if (node.url)
-      node.faviconUrl = useFaviconUrl(node.url, size)
+      node.faviconUrl = getFaviconUrl(node.url, size)
 
     if (node.children) {
       node.children = node.children.sort((a, b) => {
@@ -36,7 +39,7 @@ function processBookmarkTreeNodes(bookmarkTreeNodes: BookmarkTreeNode[], size = 
   }
 }
 
-export async function useBookmarksTree(size = 32) {
+async function getBookmarksTree(size = 32) {
   try {
     const bookmarkTreeNodes = await chrome.bookmarks.getTree()
     processBookmarkTreeNodes(bookmarkTreeNodes, size)
@@ -47,3 +50,16 @@ export async function useBookmarksTree(size = 32) {
   }
   return []
 }
+
+export const useBookmarksStore = defineStore('bookmarks', () => {
+  const bookmarkTreeNodes = ref<BookmarkTreeNode[]>()
+
+  async function initBookmarksTree() {
+    bookmarkTreeNodes.value = await getBookmarksTree()
+  };
+
+  return {
+    bookmarkTreeNodes,
+    initBookmarksTree,
+  }
+})

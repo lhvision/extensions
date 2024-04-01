@@ -1,18 +1,17 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import BookmarksTree from './components/bookmarks/BookmarksTree.vue'
+import { useBookmarksStore } from './stores/bookmarks'
+
+const bookmarksStore = useBookmarksStore()
+
+onMounted(() => {
+  bookmarksStore.initBookmarksTree()
+})
 </script>
 
 <template>
-  <div />
-  <Suspense>
-    <!-- 具有深层异步依赖的组件 -->
-    <BookmarksTree />
-
-    <!-- 在 #fallback 插槽中显示 “正在加载中” -->
-    <template #fallback>
-      Loading...
-    </template>
-  </Suspense>
+  <BookmarksTree />
 </template>
 
 <style scoped>

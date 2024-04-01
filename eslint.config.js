@@ -27,7 +27,5 @@ export default antfu({
   ignores: [
     'vite.config.ts',
     'uno.config.ts',
-    'src/main.ts',
-    // ...globs
   ],
 })

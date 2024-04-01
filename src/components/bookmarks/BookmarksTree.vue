@@ -1,15 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useBookmarksTree } from '../../hooks/useBookmarksTree'
+import { ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useBookmarksStore } from '@stores/bookmarks'
 import BookmarksItem from './BookmarksItem.vue'
 
-const bookmarksTree = await useBookmarksTree()
+const bookmarksStore = useBookmarksStore()
 
-const activeTab = ref(bookmarksTree?.[0].dateGroupModified)
+const { bookmarkTreeNodes } = storeToRefs(bookmarksStore)
+
+const activeTab = ref<number>()
+
+watch(
+  bookmarkTreeNodes,
+  (newValue) => {
+    if (newValue?.length)
+      activeTab.value = newValue[0].dateGroupModified
+  },
+  { once: true },
+)
 </script>
 
 <template>
-  <div v-for="item in bookmarksTree" :key="item.dateGroupModified" class="flex">
+  <div v-for="item in bookmarkTreeNodes" :key="item.dateGroupModified" class="flex">
     <div @click="activeTab = item.dateGroupModified">
       {{ item.title }}
     </div>
