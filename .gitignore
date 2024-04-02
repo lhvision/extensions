@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .vite
+.eslintcache
 
 # Editor directories and files
 .idea

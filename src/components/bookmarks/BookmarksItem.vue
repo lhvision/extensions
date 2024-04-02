@@ -13,18 +13,20 @@ function onOpen(url?: string) {
 <template>
   <div
     v-for="item of bookmarksTree"
-    :key="item.dateAdded"
-    class="cursor-pointer flex items-center flex-col ml-4 gap-y-2"
+    :key="`${item.parentId}_${item.id}`"
+    cursor-pointer
+    gap-y-2
+    class="flex-center flex-col"
+    :title="item.title"
     @click="onOpen(item.url)"
   >
     <img
       v-if="item.faviconUrl"
       :src="item.faviconUrl"
-      class="logo vue"
       :alt="`${item.title} logo`"
     >
     <span
-      class="text-ellipsis overflow-hidden whitespace-nowrap w16 inline-block"
+      class="inline-block max-w16 w-min text-ellipsis-nowrap"
     >
       {{ item.title }}
     </span>

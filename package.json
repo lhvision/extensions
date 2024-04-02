@@ -12,8 +12,9 @@
     "node": ">=20.11.0 || >=21.2.0"
   },
   "scripts": {
-    "dev": "pnpm build --watch",
     "build": "vue-tsc && vite build",
+    "build:watch": "vite build --watch --mode development",
+    "dev": "pnpm build:watch",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -27,6 +28,9 @@
     "@types/chrome": "^0.0.263",
     "@types/node": "^20.12.2",
     "@unocss/eslint-plugin": "^0.58.8",
+    "@unocss/preset-attributify": "^0.58.8",
+    "@unocss/preset-uno": "^0.58.8",
+    "@unocss/preset-web-fonts": "^0.58.8",
     "@vitejs/plugin-vue": "^5.0.4",
     "eslint": "^8.57.0",
     "eslint-plugin-format": "^0.1.0",

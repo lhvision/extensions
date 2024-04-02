@@ -6,6 +6,8 @@ export interface BookmarkTreeNode extends Omit<chrome.bookmarks.BookmarkTreeNode
   children?: BookmarkTreeNode[] | undefined
 }
 
+const checkBookmarksBarText = '书签栏'
+
 function getFaviconUrl(u: string, size = 32) {
   const url = new URL(chrome.runtime.getURL('/_favicon/'))
   url.searchParams.set('pageUrl', u) // this encodes the URL as well
@@ -19,31 +21,30 @@ function processBookmarkTreeNodes(bookmarkTreeNodes: BookmarkTreeNode[], size = 
     if (node.url)
       node.faviconUrl = getFaviconUrl(node.url, size)
 
-    if (node.children) {
-      node.children = node.children.sort((a, b) => {
-        // 按照 children 数量从低到高排序
-        if (a.children && !b.children)
-          return 1
-
-        if (!a.children && b.children)
-          return -1
-
-        if (a.children && b.children) {
-          if (a.children.length - b.children.length < 0)
-            return -1
-        }
-        return 0
-      })
+    if (node.children)
       processBookmarkTreeNodes(node.children)
-    }
   }
 }
 
 async function getBookmarksTree(size = 32) {
   try {
-    const bookmarkTreeNodes = await chrome.bookmarks.getTree()
-    processBookmarkTreeNodes(bookmarkTreeNodes, size)
-    return bookmarkTreeNodes[0]?.children || []
+    const bookmarkTreeNodes = (await chrome.bookmarks.getTree() as BookmarkTreeNode[])?.[0].children?.filter(v => v.title === checkBookmarksBarText)[0].children
+    const quickBookmarks = bookmarkTreeNodes?.filter(node => !node.dateGroupModified)
+    const newbookmarkTreeNodes = bookmarkTreeNodes?.filter(node => node.dateGroupModified) || []
+    processBookmarkTreeNodes(newbookmarkTreeNodes, size)
+    if (quickBookmarks?.length) {
+      const quickBookmarkInfo = {
+        ...quickBookmarks[0],
+        title: '快捷书签',
+        children: quickBookmarks?.map(item => ({
+          ...item,
+          faviconUrl: item.url ? getFaviconUrl(item.url, size) : '',
+        })),
+      }
+      Reflect.deleteProperty(quickBookmarkInfo, 'url')
+      newbookmarkTreeNodes?.unshift(quickBookmarkInfo)
+    }
+    return newbookmarkTreeNodes
   }
   catch (error) {
     console.error('Error getting bookmarks tree:', error)

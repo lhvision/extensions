@@ -3,9 +3,10 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "types": ["vite/client", "@types/chrome"],
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["vite.config.ts", "unocss.config.ts"]
+  "include": ["vite.config.ts", "unocss.config.ts", "plugins"]
 }

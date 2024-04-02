@@ -31,9 +31,21 @@ devDependencies:
   '@unocss/eslint-plugin':
     specifier: ^0.58.8
     version: 0.58.8(eslint@8.57.0)(typescript@5.4.3)
+  '@unocss/preset-attributify':
+    specifier: ^0.58.8
+    version: 0.58.8
+  '@unocss/preset-uno':
+    specifier: ^0.58.8
+    version: 0.58.8
+  '@unocss/preset-web-fonts':
+    specifier: ^0.58.8
+    version: 0.58.8
   '@vitejs/plugin-vue':
     specifier: ^5.0.4
     version: 5.0.4(vite@5.2.7)(vue@3.4.21)
+  cross-env:
+    specifier: ^7.0.3
+    version: 7.0.3
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -2053,6 +2065,14 @@ packages:
     resolution: {integrity: sha512-Dk997v9ZCt3X/npqzyGdTlq6t7lDBhZwGvV94PKzDArjp7BTRm7WlDAXYd/OWdeFHO8OChQYRJNJvUCqCbrtKA==}
     dependencies:
       browserslist: 4.23.0
+    dev: true
+
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn@7.0.3:
