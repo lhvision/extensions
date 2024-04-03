@@ -28,9 +28,15 @@ function processBookmarkTreeNodes(bookmarkTreeNodes: BookmarkTreeNode[], size = 
 
 async function getBookmarksTree(size = 32) {
   try {
-    const bookmarkTreeNodes = (await chrome.bookmarks.getTree() as BookmarkTreeNode[])?.[0].children?.filter(v => v.title === checkBookmarksBarText)[0].children
-    const quickBookmarks = bookmarkTreeNodes?.filter(node => !node.dateGroupModified)
-    const newbookmarkTreeNodes = bookmarkTreeNodes?.filter(node => node.dateGroupModified) || []
+    const bookmarkTreeNodes = (
+      (await chrome.bookmarks.getTree()) as BookmarkTreeNode[]
+    )?.[0].children?.filter(v => v.title === checkBookmarksBarText)[0]
+      .children
+    const quickBookmarks = bookmarkTreeNodes?.filter(
+      node => !node.dateGroupModified,
+    )
+    const newbookmarkTreeNodes
+      = bookmarkTreeNodes?.filter(node => node.dateGroupModified) || []
     processBookmarkTreeNodes(newbookmarkTreeNodes, size)
     if (quickBookmarks?.length) {
       const quickBookmarkInfo = {

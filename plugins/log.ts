@@ -1,7 +1,7 @@
 type ColorType = 'success' | 'info' | 'error' | 'warning' | keyof typeof colorANSIMap
 type ValueOf<T> = T[keyof T]
 
-const colorANSIMap = {
+export const colorANSIMap = {
   reset: '\x1B[0m',
   bright: '\x1B[1m',
   dim: '\x1B[2m',
@@ -27,6 +27,38 @@ const colorANSIMap = {
   bgWhite: '\x1B[47m',
 } as const
 
+enum BaseUsageUnitEnum {
+  BYTES = 'Bytes',
+  KB = 'KB',
+  MB = 'MB',
+  GB = 'GB',
+  TB = 'TB',
+  PB = 'PB',
+  EB = 'EB',
+  ZB = 'ZB',
+  YB = 'YB',
+  CORE = 'Core',
+}
+
+const BaseUsageUnitValues = Object.values(BaseUsageUnitEnum)
+
+const baseByteNum = 1024
+
+export function processBytes(
+  num: number,
+  defaultByteDecimal = 0,
+): string {
+  let byteDecimal = defaultByteDecimal
+  let currentNum = num
+  while (currentNum >= baseByteNum) {
+    currentNum /= baseByteNum
+    byteDecimal++
+  }
+  const byteBase = 1024 ** byteDecimal
+  const base = 10 ** 2
+  return `${Math.round((num / byteBase) * base) / base} ${BaseUsageUnitValues[byteDecimal]}`
+}
+
 export default function colorLog(message: string, type: ColorType = 'info') {
   let color: ValueOf<typeof colorANSIMap>
 
@@ -49,5 +81,5 @@ export default function colorLog(message: string, type: ColorType = 'info') {
   }
 
   // eslint-disable-next-line no-console
-  console.log(color, message, colorANSIMap.reset)
+  console.log(`${color}${message}${colorANSIMap.reset}`)
 }

@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import BookmarksTree from './components/bookmarks/BookmarksTree.vue'
-import { useBookmarksStore } from './stores/bookmarks'
+import { useWatchBookmarks } from './hooks/useWatchBookmarks'
 
-const bookmarksStore = useBookmarksStore()
-
-onMounted(() => {
-  bookmarksStore.initBookmarksTree()
-})
+useWatchBookmarks()
 </script>
 
 <template>

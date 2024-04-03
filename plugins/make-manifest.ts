@@ -1,9 +1,9 @@
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, statSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import type { PluginOption } from 'vite'
-import colorLog from './log'
+import colorLog, { colorANSIMap, processBytes } from './log'
 
 // 获取当前模块的绝对路径
 const currentModulePath = fileURLToPath(new URL('.', import.meta.url))
@@ -40,7 +40,11 @@ export default function makeManifestPlugin(): PluginOption {
       const manifestContent = await getManifestWithCacheBurst()
       const manifestPath = join(distDir, 'manifest.json')
       await writeFile(manifestPath, JSON.stringify(manifestContent.default, null, 2))
-      colorLog(`Manifest file copy complete: ${manifestPath}`, 'success')
+      colorLog(
+        `dist/${colorANSIMap.fgGreen}manifest.json${colorANSIMap.reset}${' '.repeat(16)}${colorANSIMap.dim}${colorANSIMap.bright}${processBytes(statSync(manifestPath).size, 1)}`,
+        'dim',
+      )
+      colorLog(`Manifest file copy complete`, 'success')
     },
   }
 }

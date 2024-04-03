@@ -17,8 +17,8 @@ const isProd = !isDev
 export default defineConfig({
   resolve: {
     alias: {
-      '@src': srcDir,
       '@stores': storesDir,
+      '@src': srcDir,
     },
   },
   plugins: [vue(), UnoCSS(), MakeManifestPlugin()],
