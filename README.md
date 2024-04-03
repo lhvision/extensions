@@ -1,6 +1,12 @@
+<div align="center">
+
+[![icon](./public/icon.png)](https://github.com/lhvision/extensions)
+
 # extensions
 
-自定义展示 chrome://newtab
+_✨ 自定义展示 chrome://newtab ✨_
+
+</div>
 
 ## 参考文档
 

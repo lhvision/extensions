@@ -61,12 +61,22 @@ async function getBookmarksTree(size = 32) {
 export const useBookmarksStore = defineStore('bookmarks', () => {
   const bookmarkTreeNodes = ref<BookmarkTreeNode[]>()
 
-  async function initBookmarksTree() {
+  const initBookmarksTree = async () => {
     bookmarkTreeNodes.value = await getBookmarksTree()
-  };
+  }
+
+  const remove = async (id: string) => {
+    try {
+      await chrome.bookmarks.remove(id)
+    }
+    catch (error) {
+      console.error('Error removing bookmark:', error)
+    }
+  }
 
   return {
     bookmarkTreeNodes,
     initBookmarksTree,
+    remove,
   }
 })

@@ -40,11 +40,11 @@ export default function makeManifestPlugin(): PluginOption {
       const manifestContent = await getManifestWithCacheBurst()
       const manifestPath = join(distDir, 'manifest.json')
       await writeFile(manifestPath, JSON.stringify(manifestContent.default, null, 2))
+      colorLog(`Manifest file copy complete`, 'success')
       colorLog(
-        `dist/${colorANSIMap.fgGreen}manifest.json${colorANSIMap.reset}${' '.repeat(16)}${colorANSIMap.dim}${colorANSIMap.bright}${processBytes(statSync(manifestPath).size, 1)}`,
+        `dist/${colorANSIMap.reset}${colorANSIMap.fgGreen}manifest.json${colorANSIMap.reset}${' '.repeat(10)}${colorANSIMap.dim}${colorANSIMap.bright}${processBytes(statSync(manifestPath).size, 1)}`,
         'dim',
       )
-      colorLog(`Manifest file copy complete`, 'success')
     },
   }
 }
