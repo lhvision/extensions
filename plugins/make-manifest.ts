@@ -25,8 +25,7 @@ function getManifestWithCacheBurst(): Promise<{ default: chrome.runtime.Manifest
 }
 
 /**
- * 自动将 manifest.js 文件写入到 dist 目录下
- *
+ * 自动将 manifest.js 文件转化为 manifest.json 文件，并写入到 dist 目录下
  */
 export default function makeManifestPlugin(): PluginOption {
   return {

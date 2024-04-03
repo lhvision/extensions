@@ -3,14 +3,14 @@ import fs from 'node:fs'
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 
 /**
- * After changing, please reload the extension at `chrome://extensions`
+ * 更改后，请在 chrome://extensions 重新加载扩展程序
  * @type {chrome.runtime.ManifestV3}
  */
 const manifest = {
   manifest_version: 3,
   name: 'CustomExtension',
   version: packageJson.version,
-  description: '想象中的 chrome://newtab',
+  description: packageJson.description,
   icons: {
     128: 'icon.png',
   },

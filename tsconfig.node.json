@@ -3,7 +3,10 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "types": ["vite/client", "@types/chrome"],
+    "types": [
+      // "vite/client",
+      "@types/chrome"
+    ],
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true

@@ -3,13 +3,14 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import UnoCSS from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
-import makeManifestPlugin from './plugins/make-manifest'
+import MakeManifestPlugin from './plugins/make-manifest'
 
 const rootDir = fileURLToPath(new URL('.', import.meta.url))
 const srcDir = join(rootDir, 'src')
 const storesDir = join(srcDir, 'stores')
 
-const isDev = import.meta.env.DEV
+// eslint-disable-next-line node/prefer-global/process
+const isDev = process.env.__DEV__ === 'true'
 const isProd = !isDev
 
 // https://vitejs.dev/config/
@@ -20,7 +21,7 @@ export default defineConfig({
       '@stores': storesDir,
     },
   },
-  plugins: [vue(), UnoCSS(), makeManifestPlugin()],
+  plugins: [vue(), UnoCSS(), MakeManifestPlugin()],
   build: {
     sourcemap: isDev,
     minify: isProd,
