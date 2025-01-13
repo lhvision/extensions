@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { useBookmarksStore } from '@stores/bookmarks'
+import { storeToRefs } from 'pinia'
 import BookmarksItem from './BookmarksItem.vue'
 
 const bookmarksStore = useBookmarksStore()

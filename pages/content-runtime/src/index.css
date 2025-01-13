@@ -1,0 +1,8 @@
+.content-runtime {
+  position: fixed;
+  top: 100px;
+  width: 100vmax;
+  height: 100px;
+  background-color: #fff;
+  color: #000;
+}

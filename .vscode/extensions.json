@@ -18,6 +18,8 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "vue.volar",
+    "vitest.explorer",
+    "nuxtr.nuxtr-vscode",
     "usernamehw.errorlens",
     "streetsidesoftware.code-spell-checker",
 
@@ -43,11 +45,12 @@
     "clinyong.vscode-css-modules",
     "jock.svg",
     "github.vscode-github-actions",
+    "wakatime.vscode-wakatime"
 
     // AI
-    // "aminer.codegeex",
     // "GitHub.copilot",
-    "alibaba-cloud.tongyi-lingma"
+    // "alibaba-cloud.tongyi-lingma"
     // "baiducomate.comate",
+    // "marscode.marscode-extension",
   ]
 }

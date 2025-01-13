@@ -1,0 +1,33 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "ready": {
+      "dependsOn": ["^ready"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["ready"],
+      "outputs": ["dist/**", "i18n/locales/**"],
+      "cache": false,
+      "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build", "ready"],
+      "outputs": ["../../dist/**", "dist/**"]
+      // "cache": false
+    },
+    "clean:node_modules": {
+      "dependsOn": ["^clean:node_modules"],
+      "cache": false
+    },
+    "clean:turbo": {
+      "dependsOn": ["^clean:turbo"],
+      "cache": false
+    },
+    "clean:bundle": {
+      "dependsOn": ["^clean:bundle"],
+      "cache": false
+    }
+  }
+}

@@ -4,7 +4,7 @@
 
 # extensions
 
-_✨ 自定义展示 chrome://newtab ✨_
+想象中的 chrome extension
 
 </div>
 
@@ -21,3 +21,7 @@ _✨ 自定义展示 chrome://newtab ✨_
 Thanks to:
 
 - [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite): Helped me with the ideas and some code implementations for developing Chrome extensions based on Vite.
+
+## License
+
+[MIT](./LICENSE) License &copy; 2024-PRESENT [lhvision](https://github.com/lhvision)

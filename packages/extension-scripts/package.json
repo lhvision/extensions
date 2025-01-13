@@ -1,0 +1,18 @@
+{
+  "name": "@lhvision/extension-scripts",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "用于本仓库一些 chrome extension 的脚本",
+  "author": "lhvision",
+  "main": "dist/index.js",
+  "scripts": {
+    "ready": "tsup-node",
+    "clean:turbo": "rimraf .turbo",
+    "clean:bundle": "rimraf dist",
+    "clean:node_modules": "rimraf node_modules"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}

@@ -15,6 +15,7 @@ dist-ssr
 .eslintcache
 
 # Editor directories and files
+.test-server
 .idea
 .DS_Store
 *.suo
@@ -22,3 +23,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.txt
+*.response.json
+.turbo

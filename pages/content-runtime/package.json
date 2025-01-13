@@ -1,0 +1,16 @@
+{
+  "name": "@lhvision/extension-content-runtime",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "lhvision chrome extension content runtime",
+  "author": "lhvision",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "vite build",
+    "dev": "cross-env __DEV__=true vite build --mode development"
+  },
+  "devDependencies": {
+    "@lhvision/extension-scripts": "workspace:*"
+  }
+}

@@ -11,5 +11,10 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["vite.config.ts", "unocss.config.ts", "plugins"]
+  "include": [
+    "packages/**/vite.config.ts",
+    "pages/**/vite.config.ts",
+    "pages/**/unocss.config.ts",
+    "packages/chrome-extension/plugins"
+  ]
 }

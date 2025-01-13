@@ -1,14 +1,18 @@
+import type { PluginOption } from 'vite'
 import { existsSync, mkdirSync, statSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import type { PluginOption } from 'vite'
-import colorLog, { colorANSIMap, processBytes } from './log'
+import { processByte } from '@lhvision/helpers'
+import chalk from 'chalk'
+
+// eslint-disable-next-line no-console
+const log = console.log
 
 // 获取当前模块的绝对路径
 const currentModulePath = fileURLToPath(new URL('.', import.meta.url))
 const rootDir = resolve(currentModulePath, '..')
-const distDir = join(rootDir, 'dist')
+const distDir = resolve(rootDir, '../../dist')
 const manifestFilePath = join(rootDir, 'manifest.js')
 
 function getManifestWithCacheBurst(): Promise<{ default: chrome.runtime.ManifestV3 }> {
@@ -40,11 +44,10 @@ export default function makeManifestPlugin(): PluginOption {
       const manifestContent = await getManifestWithCacheBurst()
       const manifestPath = join(distDir, 'manifest.json')
       await writeFile(manifestPath, JSON.stringify(manifestContent.default, null, 2))
-      colorLog(`Manifest file copy complete`, 'success')
-      colorLog(
-        `dist/${colorANSIMap.reset}${colorANSIMap.fgGreen}manifest.json${colorANSIMap.reset}${' '.repeat(10)}${colorANSIMap.dim}${colorANSIMap.bright}${processBytes(statSync(manifestPath).size, 1)}`,
-        'dim',
-      )
+      log(chalk.blue('\n\rmake-manifest ') + chalk.green('Manifest file copy complete'))
+      log(`${chalk.dim('../../dist/')}${chalk.green('manifest.json ')}${chalk.bold.gray(`${processByte(statSync(manifestPath).size, 'KB')}`)}`)
     },
   }
 }
+
+// 快速启一个服务 python -m http.server 8080
