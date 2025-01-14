@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .vite
 .eslintcache
+*.tsbuildinfo
 
 # Editor directories and files
 .test-server

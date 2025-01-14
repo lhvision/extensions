@@ -1,6 +1,6 @@
 <div align="center">
 
-[![icon](./public/icon.png)](https://github.com/lhvision/extensions)
+[![icon](./packages/chrome-extension/public/icon.png)](https://github.com/lhvision/extensions)
 
 # extensions
 
@@ -15,6 +15,8 @@
 - [参考资料](https://developer.chrome.com/docs/extensions/reference?hl=zh-cn)
 - [设计界面](https://developer.chrome.com/docs/extensions/develop/ui?hl=zh-cn)
 - [Chrome 插件开发指南](https://developer.chrome.com/docs/extensions/mv3/getstarted/?hl=zh-cn)
+- [获取网站图标](https://developer.chrome.com/docs/extensions/how-to/ui/favicons?hl=zh-cn)
+- [AI](https://developer.chrome.com/docs/ai/built-in-apis?hl=zh-cn)
 
 ## Credits
 
